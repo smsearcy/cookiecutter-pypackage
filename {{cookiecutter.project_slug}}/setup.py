@@ -1,58 +1,98 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+# Copied from https://github.com/hynek/attrs/blob/master/setup.py
+# See https://hynek.me/articles/sharing-your-labor-of-love-pypi-quick-and-dirty/
+# for more information.
 
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
+import codecs
+import os
+import re
+
+from setuptools import setup, find_packages
 
 
-with open('README.rst') as readme_file:
-    readme = readme_file.read()
+###############################################################################
 
-with open('HISTORY.rst') as history_file:
-    history = history_file.read()
-
-requirements = [
-    # TODO: put package requirements here
+NAME = "{{ cookiecutter.project_slug }}"
+PACKAGES = find_packages(where="src")
+META_PATH = os.path.join("src", "{{ cookiecutter.project_slug }}", "__init__.py")
+KEYWORDS = []
+CLASSIFIERS = [
+    'Development Status :: 2 - Pre-Alpha',
+    'Intended Audience :: Developers',
+    "Natural Language :: English",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 2",
+    "Programming Language :: Python :: 2.7",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.4",
+    "Programming Language :: Python :: 3.5",
+    "Programming Language :: Python :: Implementation :: CPython",
 ]
+INSTALL_REQUIRES = []
 
-test_requirements = [
-    # TODO: put package test requirements here
-]
+###############################################################################
 
-setup(
-    name='{{ cookiecutter.project_slug }}',
-    version='{{ cookiecutter.version }}',
-    description="{{ cookiecutter.project_short_description }}",
-    long_description=readme + '\n\n' + history,
-    author="{{ cookiecutter.full_name }}",
-    author_email='{{ cookiecutter.email }}',
-    url='https://github.com/{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}',
-    packages=[
-        '{{ cookiecutter.project_slug }}',
-    ],
-    package_dir={'{{ cookiecutter.project_slug }}':
-                 '{{ cookiecutter.project_slug }}'},
-    include_package_data=True,
-    install_requires=requirements,
-    license="ISCL",
-    zip_safe=False,
-    keywords='{{ cookiecutter.project_slug }}',
-    classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: ISC License (ISCL)',
-        'Natural Language :: English',
-        "Programming Language :: Python :: 2",
-        'Programming Language :: Python :: 2.6',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
-    ],
-    test_suite='tests',
-    tests_require=test_requirements
+HERE = os.path.abspath(os.path.dirname(__file__))
+
+
+def read(*parts):
+    """
+    Build an absolute path from *parts* and and return the contents of the
+    resulting file.  Assume UTF-8 encoding.
+    """
+    with codecs.open(os.path.join(HERE, *parts), "rb", "utf-8") as f:
+        return f.read()
+
+
+META_FILE = read(META_PATH)
+
+
+def find_meta(meta):
+    """
+    Extract __*meta*__ from META_FILE.
+    """
+    meta_match = re.search(
+        r"^__{meta}__ = ['\"]([^'\"]*)['\"]".format(meta=meta),
+        META_FILE, re.M
+    )
+    if meta_match:
+        return meta_match.group(1)
+    raise RuntimeError("Unable to find __{meta}__ string.".format(meta=meta))
+
+
+URI = find_meta("uri")
+LONG = (
+    read("README.rst") + "\n\n" +
+    "Release Information\n" +
+    "===================\n\n" +
+    re.search("(\d+.\d.\d \(.*?\)\n.*?)\n\n\n----\n\n\n",
+              read("CHANGELOG.rst"), re.S).group(1) +
+    "\n\n`Full changelog " +
+    "<{uri}en/stable/changelog.html>`_.\n\n".format(uri=URI) +
+    read("AUTHORS.rst")
 )
+
+
+if __name__ == "__main__":
+    setup(
+        name=NAME,
+        description=find_meta("description"),
+        license=find_meta("license"),
+        url=URI,
+        version=find_meta("version"),
+        author=find_meta("author"),
+        author_email=find_meta("email"),
+        maintainer=find_meta("author"),
+        maintainer_email=find_meta("email"),
+        keywords=KEYWORDS,
+        long_description=LONG,
+        packages=PACKAGES,
+        package_dir={"": "src"},
+        zip_safe=False,
+        classifiers=CLASSIFIERS,
+        install_requires=INSTALL_REQUIRES,
+    )
