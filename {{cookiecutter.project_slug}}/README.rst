@@ -15,7 +15,7 @@
 
 {{ cookiecutter.project_short_description}}
 
-* Free software: ISC license
+* Free software: MIT license
 * Documentation: https://{{ cookiecutter.project_slug }}.readthedocs.org.
 
 Features
@@ -26,7 +26,7 @@ Features
 Credits
 ---------
 
-This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+This package was created with Cookiecutter_ and the `smsearcy/cookiecutter-pypackage`_ project template.
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+.. _`smsearcy/cookiecutter-pypackage`: https://github.com/smsearcy/cookiecutter-pypackage
