@@ -27,6 +27,7 @@ with some changes to directory structure and test apparatus.
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 
+
 Quickstart
 ----------
 
@@ -50,11 +51,64 @@ For more details, see the `cookiecutter-pypackage tutorial`_.
 
 .. _`cookiecutter-pypackage tutorial`: http://cookiecutter-pypackage.readthedocs.org/en/latest/tutorial.html
 
+
+Prompts
+-------
+
+An explanation of the information you will be prompted for when generating the Python package.
+
+Templated Values
+^^^^^^^^^^^^^^^^
+
+The following appear in various parts of your generated project.
+
+full_name
+    Your full name.
+
+email
+    Your email address.
+
+github_username
+    Your GitHub username.
+
+project_name
+    The name of your new Python package project. This is used in documentation, so spaces and any characters are fine here.
+
+project_slug
+    The namespace of your Python package. This should be Python import-friendly. Typically, it is the slugified version of project_name.
+
+project_short_description
+    A 1-sentence description of what your Python package does.
+
+project_uri
+    URI for the project.
+
+release_date
+    The date of the first release.
+
+pypi_username
+    Your Python Package Index account username.
+
+year
+    The year of the initial package copyright in the license file.
+
+version
+    The starting version number of the package.
+
+Options
+^^^^^^^
+
+The following package configuration options set up different features for your project.
+
+use_pypi_deployment_with_travis
+    Whether to use PyPI deployment with Travis.
+
+
 TODO
 ----
 
 * Add option for namespace packages
-* Incorporate some of the additional naming options in
+* Incorporate some of the additional naming prompts in
   https://github.com/ionelmc/cookiecutter-pylibrary
 
 
