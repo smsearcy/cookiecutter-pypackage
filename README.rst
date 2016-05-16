@@ -7,7 +7,7 @@ cookiecutter-pypackage
 
 Cookiecutter_ template for a Python package.
 
-* GitHub repo: https://github.com/ssearcy/cookiecutter-pypackage/
+* GitHub repo: https://github.com/smsearcy/cookiecutter-pypackage/
 * Free software: BSD license
 
 Features
@@ -47,7 +47,8 @@ Then:
 * (Optional) If you feel like pinning the requirements for your package, you can
   add a ``requirements.txt`` that specifies packages and version numbers.
 
-For more details, see the `cookiecutter-pypackage tutorial`_.
+For more details, see the `cookiecutter-pypackage tutorial`_ (these are for the original
+``cookiecutter-pypackage`` but should get you going in the right direction.
 
 .. _`cookiecutter-pypackage tutorial`: http://cookiecutter-pypackage.readthedocs.org/en/latest/tutorial.html
 
