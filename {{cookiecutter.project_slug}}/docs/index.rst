@@ -14,6 +14,7 @@ Contents:
    readme
    installation
    usage
+   package
    contributing
    authors
    changelog
