@@ -1,9 +1,9 @@
 graft docs
+prune docs/_build
 graft src
 graft tests
 
 include .coveragerc
-include .cookiecutterrc
 include .editorconfig
 
 include AUTHORS.rst

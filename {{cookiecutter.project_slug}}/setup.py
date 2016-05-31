@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# Copied from https://hynek.me/articles/sharing-your-labor-of-love-pypi-quick-and-dirty/
+# Based on https://hynek.me/articles/sharing-your-labor-of-love-pypi-quick-and-dirty/
 
 import io
 import os
@@ -31,6 +31,11 @@ CLASSIFIERS = [
     'Programming Language :: Python :: Implementation :: CPython',
 ]
 INSTALL_REQUIRES = []
+ENTRY_POINTS = {
+    'console_scripts': [
+        #'command = {{ cookiecutter.project_slug }}.cli:main',
+    ]
+}
 
 ###############################################################################
 
@@ -77,7 +82,9 @@ if __name__ == '__main__':
         long_description=read('README.rst'),
         packages=PACKAGES,
         package_dir={'': 'src'},
+        include_package_data=True,
         zip_safe=False,
         classifiers=CLASSIFIERS,
         install_requires=INSTALL_REQUIRES,
+        entry_points=ENTRY_POINTS,
     )
